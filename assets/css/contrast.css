@@ -1,0 +1,521 @@
+/* ========================================================================
+   Missiona — Contraste global
+   ------------------------------------------------------------------------
+   Cette feuille est chargée après les feuilles publiques et privées.
+   Elle annule l'uniformisation #ECEBEB afin que, sur TOUT le site, les
+   surfaces de travail, cartes, formulaires et curseurs redeviennent lisibles.
+   Aucun changement de structure, de contenu ou de comportement.
+   ======================================================================== */
+
+:root {
+  /* Fond et surfaces volontairement plus soutenus : le site ne repose plus sur
+     du blanc pur, mais sur une gamme ardoise bleutée lisible. */
+  --bg-main: #DDE6F0;
+  --bg: #DDE6F0;
+  --bg-surface: #F3F7FB;
+  --surface: #F3F7FB;
+  --bg-subtle: #D1DCE8;
+  --line: #C6D2E0;
+  --line-2: #E6EDF5;
+  --border-color: #B8C6D6;
+  --border: #B8C6D6;
+  --ink: #10213D;
+  --ink-2: #2D405D;
+  --muted: #52647D;
+  --muted-2: #4A5B73;
+  /* Bleu électrique Missiona — utilisé aussi par les lueurs et états actifs. */
+  --blue: #165DFF;
+  --blue-dark: #0E43C4;
+  --blue-light: #E7F0FF;
+  color-scheme: light;
+}
+
+/* Fond général ardoise bleuté et surfaces volontairement moins blanches. */
+body,
+.main,
+.auth-wrap,
+.project-public {
+  background-color: var(--bg-main) !important;
+  background-image: none !important;
+}
+
+.header {
+  background: rgba(244, 248, 252, .97) !important;
+  border-bottom-color: #A9BACC !important;
+  box-shadow: 0 1px 0 rgba(16, 33, 61, .07);
+}
+
+.hero,
+.project-public,
+.auth-wrap {
+  background: linear-gradient(180deg, #EAF1F8 0%, #DDE6F0 100%) !important;
+}
+
+.bg-white,
+.section.bg-white {
+  background-color: #F0F4F8 !important;
+  background-image: none !important;
+}
+
+/* Toutes les surfaces interactives : fond blanc + bordure identifiable. */
+.card,
+.panel,
+.auth-card,
+.hero-card,
+.expert-directory-card,
+.faq-item,
+.landing-domain-top,
+.landing-domain-top:hover,
+.landing-domain-top:focus-visible,
+.landing .card,
+.landing .panel,
+.project-choice,
+.project-domain-current,
+.project-domain-picker,
+.project-skills-empty,
+.project-all-skills,
+.project-public .range-wrap,
+.skills-box,
+.role-opt,
+.tag-opt,
+.demo-box,
+.demo-btn,
+.footer-translate,
+.input,
+.select,
+.textarea,
+.range-saisie,
+.msg.in,
+.notif-panel,
+.chat,
+.chat-list,
+.chat-foot {
+  background: #F4F8FC !important;
+  border-color: #AEBFD1 !important;
+  box-shadow: 0 5px 16px rgba(16, 33, 61, .08) !important;
+}
+
+.card,
+.panel,
+.auth-card,
+.hero-card,
+.expert-directory-card,
+.faq-item,
+.landing-domain-top,
+.project-choice,
+.project-domain-current,
+.project-domain-picker,
+.project-skills-empty,
+.project-all-skills,
+.project-public .range-wrap,
+.skills-box,
+.role-opt,
+.tag-opt,
+.demo-box,
+.demo-btn,
+.footer-translate,
+.input,
+.select,
+.textarea,
+.range-saisie {
+  border-width: 1px !important;
+  border-style: solid !important;
+}
+
+.card-hover:hover,
+.landing-domain-top:hover,
+.project-choice:hover,
+.demo-btn:hover {
+  border-color: #6F91BD !important;
+  box-shadow: 0 10px 24px rgba(16, 33, 61, .12) !important;
+}
+
+/* États sélectionnés visibles sans masquer le texte. */
+.project-choice.selected,
+.role-opt.selected,
+.tag-opt.selected {
+  background: #E7F0FF !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 0 1px var(--blue), 0 5px 14px rgba(22, 93, 255, .12) !important;
+}
+
+.project-domain-skills,
+.project-reassurance span {
+  background: #EAF2FF !important;
+  border-color: #9AB9E8 !important;
+}
+
+/* Champs, tableaux, listes et panneaux d'administration. */
+.input,
+.select,
+.textarea,
+.range-saisie {
+  color: var(--ink) !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #63748B !important;
+  opacity: 1;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus,
+.range-saisie:focus,
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible,
+.range-saisie:focus-visible {
+  border-color: var(--blue) !important;
+  outline: 3px solid rgba(22, 93, 255, .20) !important;
+  outline-offset: 1px;
+  box-shadow: none !important;
+}
+
+thead th {
+  background: #E7EEF7 !important;
+  color: #344A68 !important;
+}
+
+tbody td,
+.match-row,
+.chat-item,
+.notif-item {
+  border-color: #D9E2ED !important;
+}
+
+tbody tr:hover,
+.chat-item:hover,
+.notif-item:hover {
+  background: #F3F7FC !important;
+}
+
+/* Le curseur de budget : piste, plage bleue et poignées redeviennent visibles. */
+.range-wrap,
+.project-public .range-wrap {
+  background: #EDF3F9 !important;
+  border: 1px solid #91A8C1 !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .95), 0 5px 16px rgba(16, 33, 61, .06) !important;
+}
+
+.range-val .range-lbl,
+.range-scale {
+  color: #4A5E78 !important;
+}
+
+.range-prix,
+.range-val strong {
+  color: var(--blue-dark) !important;
+}
+
+.range-track::before {
+  background: #C5D3E3 !important;
+  box-shadow: inset 0 1px 1px rgba(16, 33, 61, .12);
+}
+
+.range-fill {
+  background: var(--blue) !important;
+  box-shadow: 0 1px 2px rgba(22, 93, 255, .28);
+}
+
+.range-track input[type=range]::-webkit-slider-thumb {
+  background: #FFFFFF !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 2px 7px rgba(16, 33, 61, .25) !important;
+}
+
+.range-track input[type=range]::-moz-range-thumb {
+  background: #FFFFFF !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 2px 7px rgba(16, 33, 61, .25) !important;
+}
+
+/* Navigation et espace connecté : le fond n'est plus confondu avec les blocs. */
+.sidebar {
+  background: #D5E0EC !important;
+  border-right-color: #A9BACC !important;
+}
+
+.side-link:hover { background: #C9D8E8 !important; }
+.side-link.active {
+  background: #D5E5FF !important;
+  color: var(--blue-dark) !important;
+}
+
+.stat:not(.accent) {
+  background: #F4F8FC !important;
+  border-color: #AEBFD1 !important;
+  box-shadow: 0 5px 16px rgba(16, 33, 61, .08) !important;
+}
+
+.stat.accent {
+  background: #10213D !important;
+  border-color: #10213D !important;
+  /* La carte de commission reste sombre : ses trois niveaux de texte
+     sont donc explicitement contrastés, même si une feuille héritée
+     redéfinit les couleurs générales des statistiques. */
+  color: #FFFFFF !important;
+}
+.stat.accent .lbl { color: #C9D8EA !important; }
+.stat.accent .val { color: #FFFFFF !important; }
+.stat.accent .sub { color: #C9D8EA !important; }
+.stat.accent .sub a { color: #FFFFFF !important; }
+
+.chat-body { background: #E0E9F2 !important; }
+.chat-foot { border-top-color: #B8C6D6 !important; }
+
+/* Accueil : fond neutre, sans voile bleu continu. Les deux premiers blocs
+   sont réunis dans .landing-glow-zone : ils partagent réellement le MÊME fond,
+   ce qui supprime toute coupure visuelle au passage hero → domaines. */
+.landing {
+  background: #E5E9ED !important;
+}
+
+.landing::before {
+  content: none !important;
+}
+
+/* La seule lueur est volontairement douce. Elle se prolonge sur toute la zone
+   composée des blocs 1 et 2, puis disparaît avant les sections suivantes. */
+.landing .landing-glow-zone {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 820px at 50% -230px,
+      rgba(22, 93, 255, .14) 0%,
+      rgba(22, 93, 255, .10) 34%,
+      rgba(22, 93, 255, .055) 59%,
+      rgba(22, 93, 255, .018) 82%,
+      transparent 100%),
+    linear-gradient(180deg, #E5E9ED 0%, #E8ECEF 62%, #E5E9ED 100%);
+}
+
+/* Hero et domaines sont transparents : aucun aplat, trait ou pseudo-élément
+   ne peut interrompre la lueur commune du conteneur parent. */
+.landing .landing-glow-zone > .lp-hero.lp-hero-domains,
+.landing .landing-glow-zone > .landing-domains-top {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+}
+
+/* Les cartes de domaines étaient opaques (#F4F8FC) : elles formaient le blanc
+   visible sur la capture et cassaient la lueur au début du bloc 2. Elles
+   deviennent translucides et leur bord supérieur disparaît, pour prolonger
+   la nappe sans trait horizontal tout en conservant le relief des cartes. */
+.landing .landing-glow-zone .landing-domain-top {
+  background: rgba(244, 248, 252, .46) !important;
+  border-color: rgba(160, 181, 205, .62) !important;
+  border-top-color: transparent !important;
+  box-shadow: 0 6px 16px rgba(16, 33, 61, .08) !important;
+}
+
+/* Les sections qui suivent gardent leur contraste, mais le fond est désormais
+   gris neutre et ne prolonge pas artificiellement le bleu de l'accueil. */
+.landing > section,
+.landing > section.section,
+.landing > section.section-sm,
+.landing .section.bg-white,
+.landing > #methode,
+.landing > #faq {
+  position: relative;
+  background: rgba(240, 243, 246, .92) !important;
+  background-image: none !important;
+  border-top: 1px solid rgba(176, 188, 201, .72);
+  border-bottom: 1px solid rgba(176, 188, 201, .72);
+}
+
+.landing > section:nth-of-type(even),
+.landing > section.section:nth-of-type(even),
+.landing > section.section-sm:nth-of-type(even) {
+  background: rgba(230, 235, 240, .94) !important;
+}
+
+/* CTA final : l'ancien arc et le rond lumineux sont supprimés. Ils sont
+   remplacés par la vraie marque Missiona, traitée comme un filigrane lumineux. */
+.landing .cta-band {
+  background: linear-gradient(128deg, #0E43C4 0%, #165DFF 58%, #0E43C4 100%) !important;
+  border: 0;
+  box-shadow: 0 18px 42px rgba(22, 93, 255, .28) !important;
+}
+
+.landing .cta-band::before {
+  content: none !important;
+}
+
+.landing .cta-band {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.landing .cta-band p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing .cta-band .cta-actions {
+  justify-content: center;
+}
+
+/* Le texte reste centré. Le M Missiona devient une lueur libre, placée en bas
+   à droite : aucun carré, arc ou rond ne l'entoure. */
+.landing .cta-band::after {
+  content: '' !important;
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: auto;
+  right: 7%;
+  bottom: -64px;
+  left: auto;
+  width: 245px;
+  height: 245px;
+  transform: none;
+  border: 0;
+  border-radius: 0;
+  background: url('../img/missiona-glow-mark.svg') center / contain no-repeat !important;
+  box-shadow: none;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, .66))
+          drop-shadow(0 0 40px rgba(182, 213, 255, .48));
+  opacity: .28;
+}
+
+@media (max-width: 700px) {
+  .landing .cta-band::after {
+    right: -26px;
+    bottom: -46px;
+    width: 175px;
+    height: 175px;
+    opacity: .22;
+  }
+}
+
+@media (max-width: 520px) {
+  .landing .cta-band::after { display: none; }
+}
+
+.landing .cta-band h2 { color: #FFFFFF !important; }
+.landing .cta-band p { color: rgba(245, 249, 255, .90) !important; }
+
+/* Pied de page perceptible, sans changer les actions ni la typographie. */
+.footer {
+  background: #D2DDE9 !important;
+  border-top-color: #AEBFD2 !important;
+}
+
+.footer-bottom { border-top-color: #B8C6D6 !important; }
+
+/* Tous les états de focus restent nettement visibles sur les nouvelles surfaces. */
+.btn:focus-visible,
+.burger:focus-visible,
+.notif-btn:focus-visible,
+.demo-btn:focus-visible,
+.btn-google:focus-visible,
+.chat-joindre:focus-visible,
+.range-prix:focus-visible,
+.nav a:focus-visible,
+.side-link:focus-visible,
+.tab:focus-visible,
+.footer a:focus-visible,
+.faq-item summary:focus-visible {
+  outline: 3px solid rgba(22, 93, 255, .62) !important;
+  outline-offset: 3px;
+}
+
+/* Compétences sélectionnées : la couche de contraste neutralise les surfaces
+   avec !important. Cet état doit donc être réaffirmé après elle, sinon le texte
+   blanc de .on se retrouve sur un fond gris clair. */
+.tag-opt.on,
+.tag-opt.selected {
+  background: var(--blue) !important;
+  color: #FFFFFF !important;
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 0 1px var(--blue), 0 5px 14px rgba(22, 93, 255, .18) !important;
+}
+.tag-opt.on *,
+.tag-opt.selected * {
+  color: inherit !important;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border-color: #6A7B91;
+    --line: #6A7B91;
+    --muted: #334155;
+  }
+
+  .card,
+  .panel,
+  .auth-card,
+  .hero-card,
+  .expert-directory-card,
+  .faq-item,
+  .landing-domain-top,
+  .project-choice,
+  .project-public .range-wrap,
+  .input,
+  .select,
+  .textarea {
+    border-color: #6A7B91 !important;
+  }
+}
+
+/* Accueil — domaines : le survol utilise explicitement le bleu Missiona
+   et le libellé reste blanc. Les dimensions des carrés ne sont pas modifiées. */
+.landing .landing-glow-zone .landing-domain-top:hover,
+.landing .landing-glow-zone .landing-domain-top:focus-visible {
+  background: var(--blue) !important;
+  border-color: var(--blue) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 24px rgba(22, 93, 255, .30) !important;
+}
+.landing .landing-glow-zone .landing-domain-top:hover strong,
+.landing .landing-glow-zone .landing-domain-top:focus-visible strong {
+  color: #FFFFFF !important;
+}
+
+/* Les emojis des domaines sont agrandis en permanence, sans changer la taille
+   ni le ratio des carrés eux-mêmes. */
+.landing .landing-domain-top .card-icon {
+  font-size: 1.75rem !important;
+  line-height: 1 !important;
+}
+@media (max-width: 780px) {
+  .landing .landing-domain-top .card-icon { font-size: 1.45rem !important; }
+}
+
+/* Les emojis des domaines restent seuls, sans pastille ni carré pâle derrière.
+   Le carré de domaine conserve son centrage et ne change qu'au survol. */
+.landing .landing-domain-top .card-icon {
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Accueil — unique ajout décoratif : le trait bleu Missiona demandé traverse
+   discrètement le haut de la zone héros/domaines, sans modifier la grille ni
+   les contenus. Les sections restent au premier plan. */
+.landing .landing-glow-zone::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: 0;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: 220px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cpath d='M-30 160 C-25 156.5 -18.3 148.2 0 139 C18.3 129.8 53.2 115.5 80 105 C106.8 94.5 134.2 84 161 76 C187.8 68 214.3 62 241 57 C267.7 52 294.2 48.5 321 46 C347.8 43.5 375.2 42.3 402 42 C428.8 41.7 455.3 42.7 482 44 C508.7 45.3 535.2 47.7 562 50 C588.8 52.3 616.2 55.2 643 58 C669.8 60.8 696.3 64 723 67 C749.7 70 776.3 73.3 803 76 C829.7 78.7 856.2 80.8 883 83 C909.8 85.2 937.2 87.7 964 89 C990.8 90.3 1017.2 91.2 1044 91 C1070.8 90.8 1098.2 89.8 1125 88 C1151.8 86.2 1178.3 83.8 1205 80 C1231.7 76.2 1258.3 71.3 1285 65 C1311.7 58.7 1339.2 51.3 1365 42 C1390.8 32.7 1427.5 14.5 1440 9' fill='none' stroke='%23165DFF' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E") center top / 100% 100% no-repeat;
+}
+@media (max-width: 780px) {
+  .landing .landing-glow-zone::before { height: 180px; }
+}
