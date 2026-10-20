@@ -1,0 +1,145 @@
+==================================================================
+  MISSIONA — INSTALLATION
+==================================================================
+
+Environ 10 minutes. Aucune base de donnees a creer : elle se
+fabrique toute seule au premier chargement.
+
+Il vous faut : un hebergement avec PHP 7.4 ou plus recent, et
+l'extension SQLite (presente par defaut chez Hostinger, OVH, o2switch,
+Infomaniak).
+
+
+------------------------------------------------------------------
+ ETAPE 1 — VOS REGLAGES
+------------------------------------------------------------------
+Ne modifiez JAMAIS config.php : il est remplace a chaque mise a jour
+et vos changements seraient perdus.
+
+  1. Sur votre ordinateur, copiez  config.local.exemple.php  sous le
+     nom  config.local.php.
+  2. Dans le gestionnaire de fichiers de l'hebergeur, creez le dossier
+     missiona-config AU MEME NIVEAU que public_html (donc hors du Web),
+     puis envoyez-y config.local.php :
+
+        /home/votre-compte/
+          public_html/                         <-- les fichiers du site
+          missiona-config/config.local.php      <-- vos reglages prives
+
+     Le site le detecte automatiquement. Une ancienne copie encore dans
+     public_html reste toleree temporairement, mais deplacez-la ici une
+     seule fois pour ne plus jamais la refaire apres une mise a jour.
+
+  3. Ouvrez config.local.php et retirez les // devant les lignes utiles :
+
+        define('SITE_URL',       'https://votre-domaine.eu');
+        define('SITE_EMAIL',     'contact@votre-domaine.eu');
+        define('ADMIN_EMAIL',    'vous@votre-domaine.eu');
+        define('ADMIN_PASSWORD', 'un-mot-de-passe-long-et-unique');
+
+IMPORTANT : ADMIN_EMAIL et ADMIN_PASSWORD ne servent qu'au TOUT
+PREMIER chargement, quand la base est encore vide. Renseignez-les
+avant d'ouvrir le site. Si vous ouvrez le site avant, le compte
+admin@missiona.eu / admin123 sera cree — un bandeau rouge vous
+le rappellera jusqu'a ce que vous changiez le mot de passe.
+
+
+------------------------------------------------------------------
+ ETAPE 2 — ENVOYER LES FICHIERS
+------------------------------------------------------------------
+Deposez le CONTENU de l'archive dans public_html, et non un dossier
+qui le contiendrait : index.php doit se trouver directement dans
+public_html, sinon le site s'ouvrirait sur votre-domaine.eu/missiona/
+
+  Via le gestionnaire de fichiers :
+    1. Envoyez missiona-final.zip dans public_html
+    2. Clic droit  ->  Extraire
+    3. Supprimez le .zip
+
+  Si le bouton Extraire ne fait rien :
+    Envoyez aussi extraire.php a cote du zip, ouvrez
+    https://votre-domaine.eu/extraire.php puis cliquez sur Extraire.
+    Supprimez ensuite extraire.php ET le zip.
+
+  Via FTP : envoyez simplement tous les fichiers et dossiers.
+
+
+------------------------------------------------------------------
+ ETAPE 3 — DROITS DES DOSSIERS
+------------------------------------------------------------------
+    uploads/    ->  755    (fichiers envoyes par les utilisateurs)
+    data/       ->  755    (journal des erreurs)
+
+Le dossier data/ est cree automatiquement s'il n'existe pas.
+
+La base de donnees, elle, n'est PAS dans le site : elle est rangee
+a cote, dans missiona-data/, pour qu'une mise a jour des fichiers ne
+puisse jamais l'effacer.
+
+    domaine/
+        public_html/       <- le site, remplacable sans risque
+        missiona-data/     <- vos donnees, a ne jamais supprimer
+
+Si votre hebergeur interdit d'ecrire au-dessus de public_html, la
+base reste dans public_html/data/. L'ecran Sauvegarde du back-office
+vous le signale par un bandeau orange et explique quoi faire.
+
+
+------------------------------------------------------------------
+ ETAPE 4 — PREMIER CHARGEMENT
+------------------------------------------------------------------
+Ouvrez https://votre-domaine.eu
+
+Le site cree la base, les tables et votre compte administrateur.
+Connectez-vous sur /connexion avec l'adresse et le mot de passe
+choisis a l'etape 1.
+
+
+------------------------------------------------------------------
+ ETAPE 5 — A VERIFIER
+------------------------------------------------------------------
+  [ ] Le site s'affiche et le nom est correct
+  [ ] Vous pouvez vous connecter au back-office
+  [ ] Aucun bandeau rouge « mot de passe par defaut »
+  [ ] votre-domaine.eu/data/ renvoie une erreur 403
+  [ ] Une inscription de test fonctionne
+  [ ] Back-office -> Sauvegarde : le bandeau est vert
+  [ ] extraire.php et le .zip ont ete supprimes du serveur
+
+
+------------------------------------------------------------------
+ POUR ALLER PLUS LOIN
+------------------------------------------------------------------
+Tout se regle depuis le back-office, sans toucher au code :
+
+  Parametres        commission, frais, delais, TVA, mentions
+                    de facturation, maintenance, mode beta
+  Sauvegarde        emplacement des donnees, copies, restauration
+  Frequentation     pages vues et actions (reserve a l'admin
+                    principal)
+
+Paiements en ligne (Stripe) et connexion Google : les deux se
+configurent dans config.local.php, chaque etape y est detaillee.
+Le site fonctionne sans, ces fonctions restent simplement masquees.
+
+
+------------------------------------------------------------------
+ EN CAS DE PROBLEME
+------------------------------------------------------------------
+Page blanche
+    Ajoutez  define('MODE_DEBUG', true);  dans config.local.php,
+    rechargez pour lire le message, puis RETIREZ cette ligne.
+    Sans elle, les erreurs sont ecrites dans data/php-errors.log
+
+Erreur d'ecriture
+    Passez data/ et uploads/ en 755, puis 777 si necessaire.
+
+Impossible de se connecter
+    Voir MISE-A-JOUR.txt, section 7 : l'outil secours-admin.php
+    recherche toutes les bases presentes sur l'hebergement et
+    permet de reprendre la bonne ou de refaire un mot de passe.
+
+Mise a jour vers une version ulterieure
+    Voir MISE-A-JOUR.txt. En resume : config.local.php se trouve desormais
+    dans ../missiona-config/ hors de public_html ; ne remplacez jamais le
+    dossier uploads/ ni missiona-data/ s'ils sont encore dans le site.

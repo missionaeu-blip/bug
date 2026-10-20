@@ -1,0 +1,15 @@
+{
+  "name": "missiona-quality-checks",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Outils de vérification statique pour Missiona ; aucune dépendance de production.",
+  "type": "module",
+  "scripts": {
+    "lint:php": "node scripts/lint-php.mjs",
+    "check:js": "node --check assets/js/app.js && node --check assets/js/translation.js && node --check assets/js/consent.js", 
+    "check": "npm run lint:php && npm run check:js"
+  },
+  "devDependencies": {
+    "php-parser": "3.2.5"
+  }
+}

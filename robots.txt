@@ -1,0 +1,57 @@
+# Missiona — exploration et référencement
+# Les pages publiques utiles sont listées dans sitemap.xml.
+
+User-agent: *
+
+# Espaces authentifiés, administration et données personnelles
+Disallow: /admin
+Disallow: /dashboard-entreprise
+Disallow: /dashboard-freelance
+Disallow: /profil
+Disallow: /projet
+Disallow: /projets
+Disallow: /messages
+Disallow: /factures
+Disallow: /paiement-retour
+Disallow: /download
+Disallow: /facture-telecharger
+Disallow: /message-fichier
+Disallow: /deconnexion
+Disallow: /guide-demarrage
+
+# Endpoints techniques, sécurité et authentification tierce
+Disallow: /google-callback
+Disallow: /google-inscription
+Disallow: /verifier-email
+Disallow: /mdp-oublie
+Disallow: /mdp-reinitialiser
+Disallow: /stripe-webhook
+Disallow: /push-abonner
+Disallow: /push-message
+Disallow: /secours-admin
+Disallow: /maintenance
+Disallow: /sitemap.php
+
+# Fichiers non publics
+Disallow: /uploads/
+Disallow: /includes/
+Disallow: /data/
+Disallow: /config.php
+Disallow: /config.local.php
+Disallow: /scripts/
+
+# PannacottaClub est volontairement crawlable afin que ses réponses
+# X-Robots-Tag: noindex soient lues : il ne peut donc pas apparaître dans l'index.
+
+# Évite les doublons de sessions et de campagnes dans le crawl
+Disallow: /*?sid=
+Disallow: /*&sid=
+Disallow: /*?*utm_
+Disallow: /*?*gclid=
+Disallow: /*?*fbclid=
+
+# CSS, JavaScript, images et sitemap XML restent explorables
+Allow: /assets/
+Allow: /sitemap.xml
+
+Sitemap: https://missiona.eu/sitemap.xml

@@ -1,0 +1,276 @@
+==================================================================
+ Missiona — METTRE A JOUR LE SITE SANS PERDRE VOS DONNEES
+==================================================================
+
+A RETENIR EN UNE PHRASE
+-----------------------
+La configuration privee est desormais placee hors de public_html dans
+../missiona-config/config.local.php : elle ne peut donc pas etre ecrasee
+par une mise a jour. Seul le dossier de donnees eventuellement reste dans
+public_html doit encore etre preserve.
+
+
+------------------------------------------------------------------
+ NOUVEAUTE DE CETTE VERSION : SUPPRESSION DU FORFAIT FIXE DE 2 EUR
+------------------------------------------------------------------
+Le forfait fixe de 2 EUR par mission attribuee est SUPPRIME. La
+remuneration de Missiona se limite desormais a la commission d'apport
+d'affaires de X % (reglee dans le back-office) :
+   - aucun frais d'inscription, aucun abonnement, aucun forfait ;
+   - les pages /freelances, /a-propos, /mentions-legales et la page
+     Tarifs ne font plus reference a ce forfait ;
+   - les factures de remuneration adressees a l'expert ne comportent
+     plus qu'une seule ligne : la commission d'apport d'affaires ;
+   - les nouvelles factures sont creees avec 0 EUR de forfait et un
+     total HT egal a la commission ; les factures deja emises sont
+     conservees telles quelles (historique).
+Le taux de commission (20 % par defaut) ne change pas. Les factures
+existantes dans votre base de donnees restent consultables.
+
+------------------------------------------------------------------
+ VERSION PRECEDENTE : LIVRABLES EN CONSULTATION PROTEGEE
+------------------------------------------------------------------
+Les documents remis a une entreprise (livrables du depot et pieces
+jointes de la conversation) passent en CONSULTATION SEULE :
+   - le bouton Telecharger disparait cote entreprise, et le
+     telechargement brut est refuse cote serveur (403) ;
+   - l'entreprise consulte le document dans la boite d'apercu
+     filigranee a son nom ;
+   - les pages HTML sont rendues comme une page (cadre isole sans
+     scripts), jamais comme du code ; les fichiers de code (php,
+     js, css, json, sql...) s'affichent en lecture seule ;
+   - l'expert qui depose et l'equipe conservent le telechargement ;
+   - l'entreprise reste libre de retelcharger ses propres depots.
+Les extensions HTML et code sont desormais acceptees a l'envoi
+(pour deposer une maquette ou un livrable technique).
+
+------------------------------------------------------------------
+ VERSION PRECEDENTE : PAIEMENT DIRECT + E-MAILS + LEGAL
+------------------------------------------------------------------
+1. Systeme de paiement revu : le client regle l'expert directement
+   - Missiona n'encaisse plus aucun paiement : aucun fonds ne
+     transite par la plateforme (l'encaissement Stripe client est
+     retire du parcours).
+   - L'entreprise regle l'expert au montant convenu (virement, etc.),
+   puis confirme son reglement depuis la page du projet.
+   - La remuneration de Missiona (commission d'apport d'affaires
+     de X % + forfait fixe de 2 EUR par mission attribuee) est
+     facturee A L'EXPERT, et seulement apres paiement du client.
+   - [Historique] Ce forfait fixe de 2 EUR a ete supprime le
+     02/10/2026 : voir le premier encadre de ce fichier.
+   - La page "Factures" de l'expert liste les factures Missiona ;
+     l'entreprise voit une page d'information (aucune facture Missiona).
+   - Les ecrans Stripe (retraits, versements, paiement en ligne) sont
+     remplaces par des pages d'information ; aucune donnee bancaire
+     n'est collectee ni conservee.
+
+2. E-mails transactionnels (SMTP de votre hebergement)
+   - Confirmation d'inscription, reinitialisation de mot de passe
+     (nouvel ecran "Mot de passe oublie ?"), recapitulatif fiscal
+     DAC7 envoye par e-mail en plus de la notification.
+   - Renseignez SMTP_HOST / SMTP_PORT / SMTP_USER / SMTP_PASS dans
+     config.local.php (voir config.local.exemple.php). Sans reglage,
+     le site tente la fonction mail() de l'hebergement.
+
+3. Pages legales completes
+   - RGPD : sous-traitants (hebergement), mesure d'audience interne
+     sans cookie, droit de reclamation CNIL, contact du responsable.
+   - Nouvelle rubrique "Cookies" : aucun traceur, cookie de session
+     uniquement (pas de bandeau de consentement necessaire).
+   - CGU art. 3 : le canal d'echange direct projet par projet est
+     decrit. Un commentaire dans mentions.php indique ou renseigner
+     la forme juridique et le SIREN a l'immatriculation.
+
+4. Base de donnees : migration automatique (nouvelle colonne
+   factures.frais_service, table reinit_mdp pour les liens de
+   reinitialisation). Aucune action manuelle necessaire.
+
+------------------------------------------------------------------
+ VERSION PRECEDENTE : CONTACT DIRECT + FICHIERS DANS LES
+ CONVERSATIONS
+------------------------------------------------------------------
+1. Envoi de fichiers dans la messagerie
+   Un bouton trombone permet de joindre un document a chaque message
+   (PDF, Word, Excel, images, ZIP... 8 Mo maximum). Securite :
+   - seuls l'expediteur et le destinataire peuvent telecharger la
+     piece jointe (les autres comptes : acces refuse) ;
+   - les fichiers sont stockes sous un nom aleatoire, hors du web,
+     et servis en telechargement force (jamais executes) ;
+   - les extensions a risque (.php, scripts...) sont refusees ;
+   - les documents remis a une entreprise sont marques "Proteges"
+     (apercu avec filigrane).
+
+2. Contact direct entreprise <-> expert, projet par projet
+   Par defaut, tout passe par Missiona (aucun changement).
+   Sur la page d'un projet, l'admin peut desormais :
+   - ouvrir un canal d'echange direct entre le client et l'expert
+     (bouton "Ouvrir le contact direct client <-> expert") ;
+   - le refermer a tout moment (les echanges repassent alors par
+     Missiona).
+   L'equipe garde la lecture du fil direct ("Contacts directs"
+   dans la messagerie, vue en lecture seule) et recoit une
+   notification a chaque message direct. Les pieces jointes
+   echangees en direct suivent exactement les memes regles de
+   securite que le reste de la messagerie.
+   Aucune migration manuelle : la colonne contact_direct est
+   ajoutee automatiquement a la base au premier chargement.
+
+
+------------------------------------------------------------------
+ 1. OU SONT VOS DONNEES ?
+------------------------------------------------------------------
+Tout (comptes, projets, messages, factures, parametres) tient dans
+UN SEUL fichier : missiona.sqlite
+
+Depuis cette version, il est range automatiquement dans un dossier
+situe A COTE du site, et non dedans :
+
+    /votre-hebergement/
+        public_html/            <-- le site (remplacable)
+        missiona-data/      <-- vos donnees (a ne jamais toucher)
+            missiona.sqlite
+            sauvegardes/
+
+Ainsi, meme si vous supprimez entierement public_html pour y remettre
+la nouvelle version, vos comptes sont conserves.
+
+Pour verifier l'emplacement exact sur votre installation :
+    Back-office -> Sauvegarde
+
+Si cet ecran affiche un bandeau orange, c'est que votre hebergeur
+n'autorise pas l'ecriture au-dessus du site : la base est restee dans
+public_html/data/. Dans ce cas, suivez le point 4.
+
+
+------------------------------------------------------------------
+ 2. VOS REGLAGES : config.local.php
+------------------------------------------------------------------
+Ne modifiez plus jamais config.php : il est remplace a chaque mise
+a jour.
+
+Creez le dossier missiona-config au MEME NIVEAU que public_html, puis
+placez-y config.local.php :
+
+    /home/votre-compte/
+      public_html/                         <-- version du site, remplacable
+      missiona-config/config.local.php      <-- vos reglages prives
+
+Copiez config.local.exemple.php sous le nom config.local.php, renseignez
+vos valeurs, puis envoyez ce fichier dans missiona-config/. Le site le
+charge automatiquement avant tout fichier de configuration situe dans
+public_html. Cette ancienne copie peut donc etre deplacee une seule fois,
+puis ne sera plus a refaire a chaque livraison.
+
+Ce fichier contient votre email d'administrateur, votre mot de passe,
+vos cles Stripe et le nom de votre site. Conservez-en une copie sur votre
+ordinateur.
+
+
+------------------------------------------------------------------
+ 3. LA PROCEDURE DE MISE A JOUR
+------------------------------------------------------------------
+  1. Back-office -> Sauvegarde -> "Telecharger la base maintenant".
+     Rangez le fichier obtenu sur votre ordinateur. C'est votre
+     filet de securite : ne sautez jamais cette etape.
+
+  2. Mettez le site en maintenance si l'option existe chez vous,
+     ou choisissez un moment creux.
+
+  3. Envoyez les fichiers de la nouvelle version dans public_html,
+     en ecrasant les anciens.
+
+     La configuration privee dans ../missiona-config/ ne doit rien a
+     cette etape : elle est deja hors de public_html. Ne preservez dans
+     public_html que si besoin :
+        - le dossier uploads/ (fichiers envoyes par les utilisateurs)
+        - le dossier data/ s'il contient encore votre base (point 4)
+
+     Si vous avez encore un ancien config.local.php dans public_html,
+     deplacez-le une fois dans ../missiona-config/ avant cette mise a jour.
+
+  4. Ouvrez le site. La mise a jour de la structure de la base se
+     fait toute seule au premier chargement : les nouvelles colonnes
+     et tables sont ajoutees sans effacer l'existant, et une
+     sauvegarde automatique est prise juste avant.
+
+  5. Connectez-vous et verifiez que vos comptes sont bien la.
+
+
+------------------------------------------------------------------
+ 4. SI LA BASE EST ENCORE DANS LE SITE (bandeau orange)
+------------------------------------------------------------------
+Deux solutions.
+
+  Solution simple : lors de chaque envoi, ne remplacez pas le
+  dossier data/. Envoyez les autres fichiers uniquement.
+
+  Solution durable : indiquez un chemin fixe hors du site dans
+  config.local.php, par exemple
+
+      define('DB_FILE', '/home/votre-compte/prive/missiona.sqlite');
+
+  Creez ce dossier, copiez-y le fichier missiona.sqlite existant,
+  puis rechargez le site. Verifiez ensuite dans l'ecran Sauvegarde
+  que le bandeau est passe au vert.
+
+Note : si vous veniez d'une version anterieure, le site a deplace
+votre base tout seul au premier chargement. L'ancien fichier a ete
+conserve sous le nom missiona.sqlite.repris-AAAAMMJJ-HHMMSS
+dans data/. Vous pouvez le supprimer une fois tout verifie.
+
+
+------------------------------------------------------------------
+ 5. EN CAS DE PROBLEME
+------------------------------------------------------------------
+Back-office -> Sauvegarde -> "Restaurer" sur la ligne voulue.
+La base actuelle est mise de cote avant toute restauration : un
+retour en arriere reste toujours possible.
+
+Si le site ne s'affiche plus du tout, ajoutez temporairement dans
+config.local.php :
+
+    define('MODE_DEBUG', true);
+
+puis rechargez la page pour lire le message d'erreur. Remettez
+false ensuite : afficher les erreurs en ligne revele des chemins
+du serveur.
+
+
+------------------------------------------------------------------
+ 6. SAUVEGARDES AUTOMATIQUES
+------------------------------------------------------------------
+Une copie de la base est prise automatiquement avant chaque
+evolution de sa structure, dans le sous-dossier sauvegardes/.
+Les cinq plus recentes sont conservees.
+
+Ces copies vivent sur le meme serveur : elles ne protegent pas
+d'une panne de l'hebergeur. Telechargez regulierement une
+sauvegarde sur votre ordinateur.
+
+
+------------------------------------------------------------------
+ 7. JE NE PEUX PLUS ME CONNECTER APRES UNE MISE A JOUR
+------------------------------------------------------------------
+C'est presque toujours le meme probleme : le site lit une base de
+donnees differente de celle qui contient vos comptes.
+
+  1. Ajoutez dans config.local.php :
+
+         define('CLE_SECOURS', 'une-phrase-longue-et-unique');
+
+  2. Ouvrez  https://votre-site/secours-admin.php
+     puis saisissez cette phrase.
+
+  3. L'ecran affiche TOUTES les bases trouvees et le nombre de
+     comptes de chacune. Si vos comptes sont dans une base qui n'est
+     pas celle utilisee, cliquez sur "Utiliser celle-ci".
+
+  4. Sinon, changez le mot de passe de l'administrateur, ou creez
+     un nouveau compte administrateur depuis ce meme ecran.
+
+  5. IMPORTANT : retirez la ligne CLE_SECOURS une fois l'acces
+     retabli, puis rechargez la page pour verifier qu'elle affiche
+     bien "Page introuvable".
+
+Sans cette ligne, l'outil est totalement inactif et renvoie une
+page 404 : il ne constitue donc pas une porte derobee permanente.

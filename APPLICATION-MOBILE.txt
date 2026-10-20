@@ -1,0 +1,218 @@
+==================================================================
+  MISSIONA — APPLICATION MOBILE
+==================================================================
+
+Ce qui est livre : Missiona est desormais une application
+installable. Depuis un telephone, le site propose « Installer »
+aux personnes autorisees ;
+une icone Missiona apparait sur l'ecran d'accueil et l'application
+s'ouvre en plein ecran, sans barre de navigateur.
+
+Cela fonctionne sur Android ET sur iPhone, sans passer par un
+magasin d'applications.
+
+CONDITION : le site doit etre en HTTPS. C'est deja le cas sur
+missiona.eu.
+
+
+------------------------------------------------------------------
+ QUI PEUT L'INSTALLER  (par defaut : vous seul)
+------------------------------------------------------------------
+L'application est reservee aux comptes administrateurs.
+
+Un visiteur, ou meme un expert connecte, ne voit aucune proposition
+d'installation — et son navigateur n'en propose pas non plus par le
+menu, car la declaration necessaire n'est pas envoyee dans la page.
+
+Pour l'ouvrir a tous, le moment venu :
+    Back-office -> Parametres -> Application mobile
+    cochez « Proposer l'application a tous les visiteurs »
+
+Si quelqu'un l'avait deja installee et que vous refermez l'option,
+l'application se desactive chez lui au chargement suivant.
+
+Le reglage est independant du mode beta : vous pouvez tester
+l'application sur votre telephone pendant la preinscription.
+
+
+------------------------------------------------------------------
+ COMMENT VOS UTILISATEURS L'INSTALLENT
+------------------------------------------------------------------
+Android (Chrome)
+    Un bandeau bleu « Installer Missiona » apparait en bas de
+    l'ecran. Un appui suffit.
+    Sinon : menu ... -> « Installer l'application ».
+
+iPhone (Safari)
+    Apple n'autorise pas le bandeau automatique.
+    Bouton Partager -> « Sur l'ecran d'accueil ».
+
+
+------------------------------------------------------------------
+ ET LE FICHIER .APK ?
+------------------------------------------------------------------
+Un APK ne peut pas etre fabrique a partir du code PHP : c'est un
+format Android, qui exige le SDK Android et une compilation.
+
+En revanche, l'application installable qui vient d'etre livree est
+exactement ce qu'il faut pour en produire un, en quelques minutes
+et sans ecrire une ligne de code.
+
+  METHODE RECOMMANDEE — PWABuilder (gratuit, edite par Microsoft)
+
+  1. Allez sur  https://www.pwabuilder.com
+  2. Saisissez  https://missiona.eu
+  3. L'outil analyse le site et affiche un score. Le manifeste,
+     le service worker et les icones sont deja en place.
+  4. Cliquez sur « Package for stores » -> Android.
+  5. Telechargez l'archive. Elle contient :
+        - app-release-signed.apk      <- a installer directement
+        - app-release-bundle.aab      <- pour le Play Store
+        - signing.keystore            <- VOTRE CLE DE SIGNATURE
+        - assetlinks.json
+
+  6. IMPORTANT : conservez signing.keystore et son mot de passe
+     dans un endroit sur. Sans ce fichier, vous ne pourrez plus
+     jamais publier de mise a jour de l'application : Google
+     refusera toute version signee avec une autre cle.
+
+  7. Pour supprimer la barre d'adresse dans l'application, deposez
+     le fichier assetlinks.json fourni a cet emplacement exact :
+
+        public_html/.well-known/assetlinks.json
+
+     Il doit repondre sur
+        https://missiona.eu/.well-known/assetlinks.json
+
+     Sans lui, l'application fonctionne mais affiche une fine barre
+     d'adresse en haut.
+
+
+------------------------------------------------------------------
+ PUBLIER SUR LE PLAY STORE
+------------------------------------------------------------------
+  - Compte developpeur Google Play : 25 $ une fois, a vie.
+  - Envoyez le fichier .aab (pas le .apk).
+  - Delai de validation : comptez quelques jours.
+  - Il vous faudra : une politique de confidentialite en ligne
+    (vous l'avez : /mentions#rgpd), des captures d'ecran et une
+    description.
+
+A savoir : Google refuse les applications qui se contentent
+d'afficher un site sans apport propre. Missiona passe cette
+exigence grace au mode hors connexion et a l'installation native,
+mais preparez une description qui met en avant le service rendu,
+pas le site web.
+
+
+------------------------------------------------------------------
+ CE QUI A ETE AJOUTE AU SITE
+------------------------------------------------------------------
+    manifest.json        nom, icones, couleurs, raccourcis
+    sw.js                service worker (mode hors connexion)
+    hors-ligne.html      ecran affiche sans reseau
+    assets/img/icon-*    icones 96, 144, 192, 512 et « maskable »
+
+Le bandeau d'installation se ferme d'un appui sur la croix et ne
+revient pas pendant la visite.
+
+
+------------------------------------------------------------------
+ REGLE DE SECURITE APPLIQUEE
+------------------------------------------------------------------
+Aucune page HTML n'est conservee en memoire par l'application.
+
+Ces pages contiennent des donnees de compte : profil, messages,
+factures. Les garder en cache exposerait la personne suivante a
+utiliser le meme telephone, ou afficherait une session perimee.
+
+Seuls les fichiers publics et invariants sont conserves : styles,
+scripts et images. Hors connexion, l'application affiche donc un
+ecran d'attente plutot que d'anciennes donnees.
+
+
+------------------------------------------------------------------
+ APRES CHAQUE MISE A JOUR DU SITE
+------------------------------------------------------------------
+Les navigateurs gardent le service worker en memoire. Pour forcer
+la prise en compte d'une nouvelle version, modifiez la ligne
+
+    const VERSION = 'missiona-v1';
+
+en tete de sw.js  ->  'missiona-v2', puis 'v3', etc.
+
+Sans ce changement, les anciens styles peuvent persister plusieurs
+jours sur les telephones deja equipes.
+
+
+==================================================================
+  NOTIFICATIONS SUR VOTRE TELEPHONE
+==================================================================
+
+Vous recevez une alerte :
+  - a chaque nouveau projet depose
+  - a chaque palier d'inscrits (10 par defaut, reglable)
+
+Les notifications arrivent meme navigateur ferme, comme une vraie
+application.
+
+
+------------------------------------------------------------------
+ ACTIVATION  (a faire depuis le telephone lui-meme)
+------------------------------------------------------------------
+  1. Sur le telephone, ouvrez https://missiona.eu et connectez-vous
+     avec votre compte administrateur.
+  2. Installez l'application (bandeau « Installer Missiona »).
+  3. Parametres -> Application mobile ->
+     « Activer sur ce telephone »
+  4. Acceptez la demande d'autorisation du navigateur.
+
+L'activation vaut pour UN appareil. Repetez-la sur chaque telephone
+ou ordinateur devant recevoir les alertes. Le nombre d'appareils
+abonnes est affiche sous le bouton.
+
+Le palier d'inscrits se regle dans Parametres -> Versements aux
+experts -> « Alerte telephone tous les … inscrits ».
+
+
+------------------------------------------------------------------
+ IPHONE
+------------------------------------------------------------------
+Apple n'autorise les notifications que si l'application a d'abord
+ete ajoutee a l'ecran d'accueil (Partager -> Sur l'ecran d'accueil),
+et seulement depuis iOS 16.4.
+
+Ouvrez ensuite l'application depuis son icone — pas depuis Safari —
+puis activez les notifications. Depuis Safari, le bouton restera
+sans effet : c'est une limitation d'Apple, pas un defaut du site.
+
+
+------------------------------------------------------------------
+ COMMENT C'EST CONSTRUIT
+------------------------------------------------------------------
+Le site s'authentifie aupres des services de notification (Google,
+Mozilla, Apple) avec une paire de cles generee automatiquement au
+premier usage, et conservee dans vos parametres.
+
+Le signal envoye est VIDE. Le telephone, en le recevant, rappelle
+le site pour lire le message a afficher.
+
+Consequence : le contenu de vos notifications — noms de projets,
+nombre d'inscrits — ne transite JAMAIS par les serveurs de Google
+ou de Mozilla. Il ne quitte pas votre hebergement.
+
+Un appareil qui desinstalle l'application est retire automatique-
+ment de la liste des abonnes des que le service de notification
+signale que l'abonnement n'existe plus.
+
+
+------------------------------------------------------------------
+ SI VOUS NE RECEVEZ RIEN
+------------------------------------------------------------------
+  - Le site doit etre en HTTPS (c'est le cas).
+  - Verifiez que le compteur « Appareils abonnes » est superieur a 0.
+  - Android : verifiez que les notifications ne sont pas bloquees
+    pour le navigateur dans les reglages du telephone.
+  - Le mode economie de batterie retarde parfois la reception.
+  - Rien ne part si aucun appareil n'est abonne : les alertes
+    restent alors visibles dans le back-office.

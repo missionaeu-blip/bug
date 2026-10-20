@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#12336e">
+<meta name="robots" content="noindex">
+<title>Hors connexion — Missiona</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;min-height:100dvh;display:flex;align-items:center;
+       justify-content:center;padding:28px;background:#f6f7f9;color:#23282e;
+       font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;text-align:center}
+  .c{max-width:380px}
+  img{width:62px;height:62px;border-radius:14px;margin-bottom:20px}
+  h1{font-size:1.28rem;margin:0 0 10px}
+  p{color:#6b7280;font-size:.94rem;margin:0 0 22px}
+  button{background:#12336e;color:#fff;border:0;padding:12px 26px;border-radius:8px;
+         font-weight:600;font-size:.95rem;cursor:pointer}
+  button:hover{background:#0e2a5c}
+  .n{margin-top:26px;font-size:.8rem;color:#9aa1a9}
+</style>
+</head>
+<body>
+  <div class="c">
+    <img src="/assets/img/icon-192.png" alt="">
+    <h1>Pas de connexion</h1>
+    <p>
+      Missiona a besoin d'Internet pour afficher vos projets et vos messages.
+      Vérifiez votre réseau, puis réessayez.
+    </p>
+    <button type="button" onclick="location.reload()">Réessayer</button>
+    <div class="n">Vos données sont en sécurité sur nos serveurs.</div>
+  </div>
+  <script>
+    // Dès que la connexion revient, on repart tout seul
+    window.addEventListener('online', function () { location.reload(); });
+  </script>
+</body>
+</html>

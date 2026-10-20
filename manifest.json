@@ -1,0 +1,26 @@
+{
+  "name": "Missiona — déléguez vos projets digitaux",
+  "short_name": "Missiona",
+  "description": "Décrivez votre projet, Missiona s'occupe du reste : sélection de l'expert, pilotage et livraison.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#12336e",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "/assets/img/mark.svg",     "sizes": "any",     "type": "image/svg+xml" },
+    { "src": "/assets/img/icon-96.png",  "sizes": "96x96",   "type": "image/png" },
+    { "src": "/assets/img/icon-144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Me connecter",   "url": "/connexion",   "icons": [{ "src": "/assets/img/icon-96.png", "sizes": "96x96" }] },
+    { "name": "Créer un compte","url": "/inscription", "icons": [{ "src": "/assets/img/icon-96.png", "sizes": "96x96" }] }
+  ]
+}

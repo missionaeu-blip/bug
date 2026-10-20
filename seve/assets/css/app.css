@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Sève — compléments : FAQ, sélecteurs, zones de contenu, détails divers
+   ========================================================================== */
+
+/* ---------------- FAQ ---------------- */
+.faq{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.faq__item{border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);overflow:hidden;transition:border-color var(--t) var(--ease)}
+.faq__item[open]{border-color:var(--line-2);box-shadow:var(--sh-1)}
+.faq__item summary{
+  list-style:none;cursor:pointer;padding:16px 18px;font-size:15px;font-weight:600;letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:14px;color:var(--ink);
+}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__chev{margin-left:auto;color:var(--ink-4);transition:transform var(--t) var(--ease)}
+.faq__item[open] .faq__chev{transform:rotate(180deg);color:var(--green-700)}
+.faq__body{padding:0 18px 18px;color:var(--ink-2);font-size:14.4px;line-height:1.65;max-width:78ch}
+
+/* ---------------- Sélecteur de spécialités ---------------- */
+.specialty-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px;
+  border:1px solid var(--line);border-radius:var(--r-md);padding:14px;background:var(--surface-2);
+}
+.specialty-grid__group{display:block;font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:8px}
+.check--tight{gap:8px;align-items:center;font-size:13.5px;padding:4px 0}
+.check--tight input{width:17px;height:17px;margin-top:0}
+
+/* ---------------- Sommaire pages légales ---------------- */
+.legal__toc{display:flex;flex-direction:column;gap:2px}
+.legal__tocitem{padding:7px 10px;border-radius:var(--r-xs);font-size:13.2px;color:var(--ink-2);transition:all var(--t-fast) var(--ease)}
+.legal__tocitem:hover{background:var(--bg-2);color:var(--green-800)}
+.prose section + section{margin-top:8px}
+.prose .note{font-size:14px;color:var(--ink-3)}
+
+/* ---------------- Messagerie : détail ---------------- */
+.chat__flagbar{display:flex;align-items:center;gap:10px;padding:11px 16px;background:var(--warn-bg);color:var(--warn);font-size:13px}
+.chat__flagbar svg{width:16px;height:16px;flex:none}
+.chat__hint{padding:0 16px 12px;font-size:11.5px;color:var(--ink-4);display:flex;align-items:center;gap:7px}
+.msg__flag{margin-top:4px}
+
+/* ---------------- Admin : barre d’actions ---------------- */
+.adminbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+.adminbar__sep{width:1px;height:22px;background:var(--line)}
+.bulkbar{display:flex;gap:12px;align-items:center;padding:10px 14px;background:var(--ink);color:#EAF3EE;border-radius:var(--r-md);font-size:13.5px}
+.bulkbar .btn{background:rgba(255,255,255,.12);color:#fff;border-color:transparent}
+.bulkbar .btn:hover{background:rgba(255,255,255,.2)}
+.flagmsg{border-left:3px solid var(--danger);background:var(--danger-bg)}
+.modcard{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+
+/* ---------------- Listes de recommandations ---------------- */
+.recgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.matchbanner{
+  display:flex;gap:16px;align-items:center;padding:18px 20px;border-radius:var(--r-lg);
+  background:linear-gradient(180deg,var(--green-50),var(--surface));border:1px solid var(--green-100);flex-wrap:wrap;
+}
+.matchbanner .grow{min-width:220px}
+
+/* ---------------- Divers ---------------- */
+.subnav{display:flex;gap:6px;flex-wrap:wrap}
+.kv-inline{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-2)}
+.num-inline{font-variant-numeric:tabular-nums}
+.avatarrow{display:flex;align-items:center;gap:-8px}
+.avatarrow .avatar{margin-right:-10px;border:2px solid var(--surface)}
+.hr-soft{border-top:1px solid var(--line);margin:18px 0}
+.scroll-x{overflow-x:auto;scrollbar-width:thin}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap}
+.copyable{font-family:var(--mono);font-size:12.5px;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-xs);padding:7px 10px;display:inline-flex;gap:8px;align-items:center}
+.tabpanel{padding-top:22px}
+.dot-sep{width:3px;height:3px;border-radius:50%;background:var(--ink-4);display:inline-block;margin:0 7px;vertical-align:middle}
+.side-scrim{z-index:79}
+.consent + .footer{margin-top:0}
+.gapx-6{column-gap:6px}
+.nowrap{white-space:nowrap}
+.tc{text-align:center}
+.tr{text-align:right}
+.minw-0{min-width:0}
+.h-100{height:100%}
+
+/* ---------------- Ruban de démonstration ---------------- */
+.demobar{background:var(--green-950);color:#DCEAE2;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08)}
+.demobar__inner{display:flex;align-items:center;gap:12px;padding-block:8px;min-height:38px;flex-wrap:wrap}
+.demobar .tag{background:rgba(255,255,255,.12);color:#DCEAE2;border-color:transparent}
+.demobar__txt{flex:1 1 240px;min-width:0;color:rgba(220,234,226,.82);line-height:1.4}
+.demobar__actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.demobar .btn--ghost{color:#DCEAE2}
+.demobar .btn--ghost:hover{background:rgba(255,255,255,.12);color:#fff}
+.demobar .btn--outline{background:transparent;border-color:rgba(255,255,255,.3);color:#fff}
+.demobar .btn--outline:hover{background:rgba(255,255,255,.12);color:#fff}
+.demobar__x{width:26px;height:26px;border-radius:var(--r-xs);display:grid;place-items:center;color:rgba(220,234,226,.7)}
+.demobar__x:hover{background:rgba(255,255,255,.12);color:#fff}
+@media (max-width:640px){
+  .demobar__txt{display:none}
+  .demobar__inner{gap:8px}
+}
+
+/* ==========================================================================
+   Document RIB (relevé d’identité bancaire) + impression
+   ========================================================================== */
+.ribdoc{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(16px,2.4vw,24px);color:var(--ink-2)}
+.ribdoc__head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}
+.ribdoc__brand{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:650;color:var(--green-800);letter-spacing:.02em}
+.ribdoc h2{font-size:clamp(17px,2vw,20px);margin-top:8px;color:var(--ink)}
+.ribdoc__sub{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+.ribdoc__badges{display:flex;gap:6px;flex-wrap:wrap}
+.ribdoc__badge{font-size:10.5px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:var(--r-full)}
+.ribdoc__badge--demo{background:var(--warn-bg);color:var(--warn)}
+.ribdoc__badge--ok{background:var(--ok-bg);color:var(--ok)}
+.ribdoc__badge--ko{background:var(--danger-bg);color:var(--danger)}
+.ribdoc__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.ribdoc__label{display:block;font-size:10.5px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4)}
+.ribdoc__value{margin-top:5px;font-size:14.5px;font-weight:550;color:var(--ink)}
+.ribdoc__hint{margin-top:3px;font-size:12px;color:var(--ink-3)}
+.ribdoc__iban{padding:18px 0;border-bottom:1px solid var(--line)}
+.ribdoc__ibanval{margin-top:8px;font-family:var(--mono);font-size:clamp(15px,2.3vw,20px);font-weight:600;letter-spacing:.06em;color:var(--ink);word-break:break-word}
+.ribdoc__meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:12px;font-size:12.5px;color:var(--ink-3)}
+.ribdoc__meta b{color:var(--ink-2);font-weight:650;margin-right:6px}
+.ribdoc__foot{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:18px;padding:18px 0 4px}
+.ribdoc__line{display:block;height:34px;border-bottom:1px solid var(--line-2);margin-top:10px}
+.ribdoc__legal{border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:8px}
+.ribdoc__legal p{font-size:11.5px;line-height:1.5;color:var(--ink-3)}
+@media (max-width:640px){.ribdoc__foot{grid-template-columns:1fr}}
+
+/* Impression : seuls le document et son contenu sortent sur papier / PDF */
+@media print{
+  body{background:#fff}
+  .demobar,.nav,.footer,.consent,.toasts,.drawer,.scrim,.side,.topbar,
+  .modal__scrim,.modal__head,.modal__foot,.modal__x,.pcard__foot,.btn{display:none !important}
+  .modal-root{position:static !important;display:block !important}
+  .modal{position:static;display:block;padding:0}
+  .modal__panel{max-width:none;max-height:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
+  .modal__body{padding:0}
+  .ribdoc{border:0;border-radius:0;padding:0;page-break-inside:avoid}
+  .ribdoc__legal p{color:#444}
+}
+
+/* ==========================================================================
+   Litiges & remboursements — registre, signaux, veille, dossier imprimable
+   ========================================================================== */
+
+.disprow{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-1);padding:18px 20px}
+.disprow__amount{font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+.disprow__side{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:132px}
+@media (max-width:640px){
+  .disprow{grid-template-columns:1fr}
+  .disprow__side{flex-direction:row;flex-wrap:wrap;align-items:flex-start;min-width:0}
+}
+
+.signallist{display:grid;gap:14px;padding:0;margin:0;list-style:none}
+.signallist li{font-size:14px;line-height:1.5}
+.signallist li b{display:block;font-size:14.5px}
+.signallist li em{display:block;color:var(--muted);font-size:13px;font-style:normal;margin-top:4px}
+
+.prudence{display:grid;gap:14px;padding:0;margin:0;list-style:none;counter-reset:pr}
+.prudence li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:14px;line-height:1.5;align-items:start}
+.prudence li>span{width:26px;height:26px;border-radius:var(--r-sm);background:var(--green-100);color:var(--green-700);
+  display:grid;place-items:center;font-size:12.5px;font-weight:600}
+
+.signals{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:8px}
+.signalbox{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;
+  border:1px solid var(--line);border-radius:var(--r-md);padding:11px 13px;cursor:pointer;background:var(--bg-1)}
+.signalbox:hover{border-color:var(--green-100);background:var(--green-50,#f4f9f5)}
+.signalbox input{margin-top:2px}
+.signalbox b{display:block;font-size:13.5px;font-weight:600}
+.signalbox em{display:block;font-style:normal;color:var(--muted);font-size:12.5px;margin-top:3px;line-height:1.45}
+
+.waverow{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;background:var(--bg-1)}
+
+.model{border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;background:var(--bg-1)}
+.model__text{margin:12px 0 0;padding:14px;border-radius:var(--r-md);background:var(--bg-2,#f4f5f3);
+  font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;
+  max-height:280px;overflow:auto}
+
+/* ---- Dossier de défense imprimable ---- */
+.dossierdoc{border:1px solid var(--line);border-radius:var(--r-md);padding:26px;background:#fff}
+.dossierdoc__head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.dossierdoc__head b{display:block;font-size:17px;letter-spacing:-.01em}
+.dossierdoc__head span{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.dossierdoc__mark{font-weight:600;color:var(--green-700);letter-spacing:.02em}
+.dossierdoc__meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:20px 0 0}
+.dossierdoc__meta dt{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.dossierdoc__meta dd{margin:4px 0 0;font-size:13.5px;font-weight:500}
+.dossierdoc__block{margin-top:24px}
+.dossierdoc__block h4{font-size:14px;margin:0 0 10px}
+.dossierdoc__block p{font-size:13.5px;line-height:1.6;color:var(--ink);margin:0}
+.dossierdoc__list{margin:0;padding-left:18px;font-size:13.5px;line-height:1.6}
+.dossierdoc__list li{margin-bottom:6px}
+.dossierdoc__table{width:100%;border-collapse:collapse;margin-top:12px;font-size:12.5px}
+.dossierdoc__table th,.dossierdoc__table td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top}
+.dossierdoc__table thead th{background:var(--bg-2,#f4f5f3);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.dossierdoc__table .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dossierdoc__table tfoot th{background:var(--green-50,#f4f9f5);font-size:12.5px}
+.dossierdoc__ask{border:1px solid var(--green-100);background:var(--green-50,#f4f9f5);border-radius:var(--r-md);padding:16px 18px}
+.dossierdoc__legal{margin-top:26px;padding-top:14px;border-top:1px solid var(--line)}
+.dossierdoc__legal p{font-size:11.5px;color:var(--muted);line-height:1.55}
+.dossierdoc__sign{margin-top:18px !important;font-size:12px !important;color:var(--ink) !important}
+
+@media print{
+  .dossierdoc{border:0;border-radius:0;padding:0;page-break-inside:auto}
+  .dossierdoc__table{page-break-inside:auto}
+  .dossierdoc__table tr{page-break-inside:avoid}
+  .dossierdoc__legal p{color:#444}
+}
+
+.disprow__main{min-width:0}
+.filter--wide{grid-column:span 2}
+@media (max-width:620px){ .filter--wide{grid-column:auto} }
+
+/* ==========================================================================
+   « Chez vous » — espace tranquille, fil direct avec l’équipe,
+   guichet d’écoute (mêmes principes que le reste de la charte)
+   ========================================================================== */
+
+/* ---------------- Bouton de soutien : bas à gauche, toujours visible ----------------
+   « Besoin de parler ? » — présent sur toutes les pages (espace membre et site
+   public quand une créatrice est connectée). Il ouvre la ligne directe avec
+   l’équipe Sève : le message arrive sur le bureau de l’administration.          */
+/* ---------------- Bouton de soutien : bas à droite, toujours visible ----------------
+   Un rond, un cœur plein et rouge. Au repos il ne recouvre presque rien ; le libellé
+   s’ouvre au survol ou au clavier. Il ouvre la conversation privée avec l’équipe Sève,
+   dont les messages arrivent sur le bureau de l’administration.                        */
+.fab{position:fixed;right:22px;bottom:22px;z-index:95;display:inline-flex;align-items:center;gap:12px;
+  width:56px;height:56px;padding:0;justify-content:center;border-radius:var(--r-full);
+  background:var(--green-800);color:#F2F8F4;font-size:14px;font-weight:600;box-shadow:var(--sh-3);
+  transition:transform var(--t) var(--ease),background var(--t) var(--ease),opacity .25s var(--ease),visibility .25s var(--ease);
+  animation:fabIn .5s var(--ease) both}
+.fab svg{width:21px;height:21px;flex:none}
+/* Le cœur : plein, rouge — la seule touche rouge de l’interface. */
+.fab__heart{display:inline-flex;color:#DE4B42}
+/* Le libellé s’affiche en info-bulle à gauche du cercle : rien ne déborde. */
+.fab__label{position:absolute;right:calc(100% + 12px);top:50%;display:flex;flex-direction:column;
+  text-align:left;white-space:nowrap;padding:10px 15px;border-radius:var(--r-md);background:var(--green-800);
+  color:#F2F8F4;box-shadow:var(--sh-3);pointer-events:none;opacity:0;
+  transform:translateY(-50%) translateX(6px);transition:opacity .2s var(--ease),transform .22s var(--ease)}
+.fab__label b{font-size:14px;font-weight:600}
+.fab__label em{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.03em;color:#BFDACB;margin-top:2px}
+.fab:hover .fab__label,.fab:focus-visible .fab__label{opacity:1;transform:translateY(-50%)}
+.fab:hover{transform:translateY(-2px);background:var(--green-900,#123f2b)}
+.fab__dot{position:absolute;top:-4px;left:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:var(--r-full);
+  background:var(--warn);color:#fff;font-size:11.5px;font-weight:650;display:grid;place-items:center}
+@keyframes fabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:640px){
+  .fab{right:12px;bottom:12px;width:52px;height:52px}
+  /* Sur petit écran, l’info-bulle passe au-dessus du cercle. */
+  .fab__label{right:0;top:auto;bottom:calc(100% + 10px);transform:translateX(0) translateY(4px)}
+  .fab:hover .fab__label,.fab:focus-visible .fab__label{transform:translateY(0)}
+}
+/* Les notifications s’empilent au-dessus du bouton : jamais l’une sur l’autre. */
+.toasts{bottom:88px}
+@media (max-width:900px){ .toasts{bottom:84px} }
+@media (prefers-reduced-motion:reduce){ .fab{animation:none} }
+/* Le contenu respire : le bouton flottant ne recouvre jamais la fin d’une page. */
+.page,#view{padding-bottom:96px}
+/* Le bouton reste visible en permanence : tant que le bandeau de consentement
+   occupe le bas de l’écran, il remonte au-dessus de sa hauteur réelle. */
+.has-consent .fab{bottom:calc(var(--consent-h, 140px) + 22px)}
+/* Bandeau resserré sur petit écran : il occupait près de la moitié de l’écran. */
+@media (max-width:560px){
+  .consent{left:10px;right:10px;bottom:10px;padding:13px 14px;gap:11px}
+  .consent p{font-size:12.5px;line-height:1.45}
+  .consent__actions{flex-direction:row;flex-wrap:wrap;width:100%;gap:8px}
+  .consent__actions .btn{width:auto;flex:1 1 46%}
+  .consent__actions .btn--primary{flex:1 1 100%}
+}
+
+/* ---------------- Fil avec l’équipe ---------------- */
+.teamavatar{width:38px;height:38px;border-radius:var(--r-md);background:var(--green-50);color:var(--green-800);
+  display:grid;place-items:center;flex:none}
+.care-thread{display:flex;flex-direction:column;gap:14px;margin:16px 0 18px;padding:18px 16px;border:1px solid var(--line);
+  border-radius:var(--r-md);background:var(--surface-2);max-height:420px;overflow-y:auto}
+.care-thread .msg{max-width:min(84%,560px)}
+.msg__author{font-size:11.5px;color:var(--green-800);font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.msg__author svg{width:13px;height:13px}
+.care-composer{border-top:1px solid var(--line);padding-top:16px}
+.chips--wrap{gap:8px}
+.chips .chip{cursor:pointer;transition:background var(--t) var(--ease),border-color var(--t) var(--ease)}
+.chips .chip.is-on{border-color:var(--green-600)}
+.linkish{background:transparent;color:var(--green-700);font-size:12.5px;font-weight:600;justify-self:start;text-decoration:underline;
+  text-underline-offset:2px}
+
+/* ---------------- Cartes de réglages ---------------- */
+.carecard{border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-1);padding:15px 16px}
+.carecard + .carecard{margin-top:12px}
+.carecard b{font-size:14.5px;font-weight:600}
+.optlist{display:grid;gap:8px}
+.optrow{display:grid;grid-template-columns:20px 1fr;gap:11px;align-items:start;text-align:left;width:100%;
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-1);padding:12px 13px;cursor:pointer;
+  transition:border-color var(--t) var(--ease),background var(--t) var(--ease)}
+.optrow:hover{border-color:var(--line-2)}
+.optrow.is-on{border-color:var(--green-600);background:var(--green-50)}
+.optrow__mark{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);margin-top:2px;flex:none}
+.optrow.is-on .optrow__mark{border-color:var(--green-700);box-shadow:inset 0 0 0 4px var(--green-600)}
+.optrow b{display:block;font-size:14px;font-weight:600}
+.optrow em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.5}
+
+.quickgrid{display:grid;gap:8px}
+.quicklink{display:grid;grid-template-columns:1fr 18px;gap:4px 10px;align-items:center;text-decoration:none;
+  border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-1);padding:12px 14px;
+  transition:border-color var(--t) var(--ease),transform var(--t) var(--ease)}
+.quicklink:hover{border-color:var(--line-2);transform:translateY(-1px)}
+.quicklink b{font-size:14px;font-weight:600;color:var(--ink)}
+.quicklink span{grid-column:1;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+.quicklink svg{grid-row:1 / span 2;grid-column:2;color:var(--ink-4)}
+.signallist .num{font-variant-numeric:tabular-nums;color:var(--green-800)}
+
+/* ---------------- Bandeau de réassurance du tableau de bord ---------------- */
+.safe-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;
+  border:1px solid var(--green-100);border-radius:var(--r-lg);background:var(--green-50);padding:18px}
+
+/* Bandeau « chez vous » compact : une ligne + un pliage (au lieu de 3 gros blocs) */
+.safe-strip--compact{display:block}
+.safe-strip__line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.safe-strip__line > svg{width:19px;height:19px;color:var(--green-700);flex:none}
+.safe-strip__line b{font-size:14.5px}
+.safe-strip__line > span:not(.btn){font-size:13.5px;color:var(--ink-3);min-width:0;flex:1 1 260px}
+.safe-strip__line .btn{margin-left:auto}
+.safe-strip__line .btn + .btn{margin-left:0}
+.safe-strip__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;padding-top:4px}
+
+/* Complétion du profil : une ligne fine sous l’en-tête */
+.progressline{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:12px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface-2);
+}
+.progressline__label{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.progressline__label svg{width:15px;height:15px;color:var(--ink-3)}
+.progressline__track{flex:1 1 180px;height:8px;border-radius:var(--r-full);background:var(--bg-3);overflow:hidden;min-width:120px}
+.progressline__track i{display:block;height:100%;border-radius:var(--r-full);background:linear-gradient(90deg,var(--green-500),var(--green-700))}
+
+/* -------------------------------------------------------------------------- */
+/* Compte OnlyFans relié : flux en direct et aperçu local des photos           */
+/* -------------------------------------------------------------------------- */
+.oflive{display:flex;flex-direction:column;gap:2px}
+.liverow{display:flex;align-items:flex-start;gap:11px;padding:11px 12px;border-radius:var(--r-md);transition:background 180ms ease}
+.liverow + .liverow{border-top:1px solid var(--line)}
+.liverow__icon{flex:0 0 auto;width:30px;height:30px;border-radius:var(--r-sm);display:grid;place-items:center;background:var(--green-50);color:var(--green-700)}
+.liverow__icon svg{width:15px;height:15px}
+.liverow__body{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1 1 auto;font-size:13.8px;line-height:1.45}
+.liverow__body em{font-style:normal;font-size:12.5px;color:var(--ink-3)}
+.oflive.is-live .liverow:first-child{animation:liverow-in 420ms ease}
+@keyframes liverow-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+.ofshots{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+.ofshot{width:76px;height:76px;object-fit:cover;border-radius:var(--r-md);border:1px solid var(--line-2);background:var(--bg-2)}
+@media (prefers-reduced-motion:reduce){.oflive.is-live .liverow:first-child{animation:none}}
+.progressline b{font-size:14px}
+.progressline .fold{flex-basis:100%;margin-top:2px}
+
+.safe-strip__item{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+.safe-strip__item svg{width:18px;height:18px;color:var(--green-700);margin-top:1px}
+.safe-strip__item b{display:block;font-size:13.8px;font-weight:600;color:var(--green-900,#123f2b)}
+.safe-strip__item span{display:block;font-size:12.5px;color:var(--ink-3);margin-top:4px;line-height:1.5}
+@media print{ .fab{display:none !important} }
+
+/* Destinataire explicite dans la fenêtre « Besoin de parler ? » */
+.fabrecap{display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;border:1px solid var(--line);
+  border-radius:var(--r-md);background:var(--bg-1);padding:13px 15px}
+.fabrecap b{display:block;font-size:13.8px;font-weight:600}
+.fabrecap em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-3);margin-top:5px;line-height:1.5}
